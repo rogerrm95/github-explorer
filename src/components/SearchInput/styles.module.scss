@@ -1,0 +1,49 @@
+.searchInput {
+    display: grid;
+    grid-template-columns: 1fr 3rem;
+    grid-template-rows: 1fr 3rem;
+    grid-template-areas: 
+    "legend legend"
+    "input button";
+
+    label {
+        grid-area: legend;
+        font-family: Sarala, sans-serif;
+        line-height: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    input {
+        grid-area: input;
+
+        border: none;
+        padding: 1.5rem 1rem;
+        border-radius: 0.5rem 0 0 0.5rem;
+        outline: none;
+
+        font-size: 1rem;
+        background: var(--input);
+
+        &:focus{
+            box-shadow: inset 0px 0px 5px var(--green-500) ;
+        }
+    }
+
+    button {
+        grid-area: button;
+
+        border: none;
+        border-radius: 0 0.5rem 0.5rem 0;
+        background: var(--green-500);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: filter 0.3s;
+
+        &:hover {
+            filter: brightness(0.75);
+        }
+    }
+}

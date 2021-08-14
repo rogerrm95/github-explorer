@@ -22,13 +22,38 @@
     width: 100vw;
 }
 
-body{
-    font: Arial;
+body, h1, h2, input, button{
+    font-family: Roboto, sans-serif;
     color: var(--white);
-    background-color: var(--background);
+}
+
+body{
+    background: var(--background);
 }
 
 h1{
-    font-size: 60px;
-    font:  500 64px Roboto, sans-serif;
+    font: 500 5rem Roboto, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+@media(max-width: 900px) {
+    html {
+        font-size: 93.75%; // 15px
+    }
+}
+
+
+@media(max-width: 700px) {
+    html {
+        font-size: 87.50%; // 14px
+    }
+}
+
+@media(max-width: 450px) {
+    html {
+        font-size: 81,25%; // 14px
+    }
 }
