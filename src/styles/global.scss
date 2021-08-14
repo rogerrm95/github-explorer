@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+:root {
+    --background: #212322;
+    --input: #2E312F;
+
+    --green-900: #0F3138;
+    --green-750: #123B44;
+    --green-500: #008779;
+    --green-250: #7EB7B5;
+    --green-100: #B9E2E1;
+
+    --white: #FFF
+}
+
+#App {
+    height: 100vh;
+    width: 100vw;
+}
+
+body{
+    font: Arial;
+    color: var(--white);
+    background-color: var(--background);
+
+    h1{
+        font-size: 60px;
+    }
+}
