@@ -1,0 +1,32 @@
+.noResults {
+    align-self: center;
+    padding: 1rem;
+    margin: auto 0;
+    display: grid;
+    grid-template-columns: 128px 128px;
+    grid-template-rows: 1fr 2.5rem;
+    gap: 0.5rem;
+    grid-template-areas: 
+    "notebook danger"
+    "legend legend";
+
+    #notebook  {
+        grid-area: notebook;
+        margin: 0.5rem;
+        width: 4rem;
+    }
+
+    #danger {
+        grid-area: danger;
+    }
+
+    span {
+        grid-area: legend;
+        margin-top: 1rem;
+        font-family: Sarala, sans-serif;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-align: center;
+        color: var(--green-500)
+    }
+}

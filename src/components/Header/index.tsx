@@ -1,5 +1,4 @@
-import Logo from '../assets/logo.svg'
-
+import Logo from '../../assets/logo.svg'
 import styles from './styles.module.scss'
 
 export function Header(){
@@ -9,7 +8,7 @@ export function Header(){
 
             <h1>
                 Git<strong>hub</strong>
-                Explorer<strong>.</strong>
+                 Explorer<strong>.</strong>
             </h1>
         </header>
     )

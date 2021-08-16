@@ -1,0 +1,47 @@
+.container {
+    height: 100%;
+    width: 100%;
+    max-width: 1440px;
+
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+    background-color: var(--background);
+
+}
+
+.gradientBackground {
+    position: fixed;
+    width: inherit;
+    height: inherit;
+    left: 0px;
+    top: 0px;
+
+    background: radial-gradient(50% 50% at 50% 50%, #008779 0%, rgba(0, 135, 121, 0) 100%);
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.content {
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.topSearch {
+    margin: 0 auto;
+    max-width: 30rem;
+    min-width: 30rem;
+    margin-bottom: 2.5rem;
+}
+
+.repositoriesList {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
+
+}

@@ -7,12 +7,15 @@
 :root {
     --background: #212322;
     --input: #2E312F;
+    --box-shadow: #0087797a;
 
     --green-900: #0F3138;
     --green-750: #123B44;
     --green-500: #008779;
     --green-250: #7EB7B5;
     --green-100: #B9E2E1;
+
+    --grey-500: #666666;
 
     --white: #FFF
 }
@@ -22,13 +25,44 @@
     width: 100vw;
 }
 
-body{
-    font: Arial;
+body, h1, h2, input, button{
+    font-family: Roboto, sans-serif;
     color: var(--white);
-    background-color: var(--background);
+}
+
+body{
+    background: var(--background);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 h1{
-    font-size: 60px;
-    font:  500 64px Roboto, sans-serif;
+    font: 500 5rem Roboto, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+@media(max-width: 900px) {
+    html {
+        font-size: 93.75%; // 15px
+    }
+}
+
+
+@media(max-width: 700px) {
+    html {
+        font-size: 87.50%; // 14px
+    }
+}
+
+@media(max-width: 450px) {
+    html {
+        font-size: 81,25%; // 14px
+    }
 }
