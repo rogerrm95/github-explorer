@@ -9,7 +9,7 @@ import styles from "../styles/home.module.scss"
 export default function Home() {
     return (
         <div className={styles.container}>
-            
+
             <Header />
 
             <main className={styles.main}>
@@ -20,12 +20,13 @@ export default function Home() {
                     <p>
                         A plataforma que lista os projetos mais <br />relevantes do seu Github.
                     </p>
-                    
-                    <SearchInput/>
-                    
-                </section>
+                    <label htmlFor="search">
+                        Para começar a utilizar, informe seu nick do Github abaixo:
+                    </label>
 
-                <img src={HeroImage} alt="Hero" className={styles.heroImage}/>
+                    <SearchInput />
+                </section>
+                <img src={HeroImage} alt="Hero" className={styles.heroImage} />
             </main>
 
             <div className={styles.gradientBackground} />

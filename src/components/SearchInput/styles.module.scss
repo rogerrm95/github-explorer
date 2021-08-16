@@ -1,17 +1,10 @@
 .searchInput {
+    min-width: 80%;
     display: grid;
     grid-template-columns: 1fr 3rem;
-    grid-template-rows: 1fr 3rem;
+    grid-template-rows: 4rem;
     grid-template-areas: 
-    "legend legend"
     "input button";
-
-    label {
-        grid-area: legend;
-        font-family: Sarala, sans-serif;
-        line-height: 2rem;
-        margin-bottom: 1rem;
-    }
 
     input {
         grid-area: input;

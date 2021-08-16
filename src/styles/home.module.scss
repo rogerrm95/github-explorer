@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     max-width: 1440px;
+    
 
     display: flex;
     flex-direction: column;
@@ -55,6 +56,12 @@
         font-size: 1.5rem;
         line-height: 2rem;
         margin-bottom: 2.5rem;
+    }
+
+    label {
+        font-family: Sarala, sans-serif;
+        line-height: 2rem;
+        margin-bottom: 1rem;
     }
 }
 

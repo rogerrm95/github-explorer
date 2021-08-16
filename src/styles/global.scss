@@ -7,12 +7,15 @@
 :root {
     --background: #212322;
     --input: #2E312F;
+    --box-shadow: #0087797a;
 
     --green-900: #0F3138;
     --green-750: #123B44;
     --green-500: #008779;
     --green-250: #7EB7B5;
     --green-100: #B9E2E1;
+
+    --grey-500: #666666;
 
     --white: #FFF
 }
@@ -29,6 +32,8 @@ body, h1, h2, input, button{
 
 body{
     background: var(--background);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 h1{
@@ -37,6 +42,10 @@ h1{
 
 button {
     cursor: pointer;
+}
+
+li {
+    list-style: none;
 }
 
 @media(max-width: 900px) {
