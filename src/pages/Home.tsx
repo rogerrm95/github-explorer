@@ -5,8 +5,18 @@ import { SearchInput } from "../components/SearchInput";
 import HeroImage from '../assets/hero-image.png'
 // CSS //
 import styles from "../styles/home.module.scss"
+import { useEffect } from 'react';
+import { gitHubAPI } from '../services/app';
 
 export default function Home() {
+
+    useEffect(() => {
+        const response = gitHubAPI.get('/rogerrm95/repos')
+            .then(res => console.log(res.data))
+
+        
+    }, [])
+
     return (
         <div className={styles.container}>
 
