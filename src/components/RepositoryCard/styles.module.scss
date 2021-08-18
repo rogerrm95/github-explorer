@@ -99,6 +99,11 @@
         color: var(--green-500);
         overflow-x: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 1.5rem;
+
+        font-size: 0.75rem;
+        
     }
 
     img {

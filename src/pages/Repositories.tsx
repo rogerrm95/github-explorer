@@ -1,3 +1,5 @@
+import { useRepositoryList } from "../hooks/useRepositoryList"; // Hooks //
+// Components //
 import { Header } from "../components/Header";
 import { NoResults } from "../components/NoResults";
 import { RepositoryCard } from "../components/RepositoryCard";
@@ -6,7 +8,9 @@ import { SearchInput } from "../components/SearchInput";
 import styles from '../styles/repositories.module.scss'
 
 export default function Repositories() {
-    const isTrue = false
+
+    const { name, repositories } = useRepositoryList()
+
     return (
         <div className={styles.container}>
             <Header />
@@ -17,16 +21,25 @@ export default function Repositories() {
                 </header>
 
                 {
-                    isTrue && (
+                    !repositories ? (
                         <NoResults />
+                    ) : (
+                        <ul className={styles.repositoriesList}>
+                            {
+                                repositories.map(repository => (
+                                    <RepositoryCard
+                                        key={repository.id}
+                                        project={repository.name}
+                                        description={repository.description}
+                                        language={repository.language}
+                                        updatedAt={repository.updatedAt}
+                                        url={repository.html_url}
+                                        topics={repository.topics} />
+                                ))
+                            }
+                        </ul>
                     )
                 }
-
-                <ul className={styles.repositoriesList}>
-                    <RepositoryCard />
-                    <RepositoryCard />
-                    <RepositoryCard />
-                </ul>
             </main>
 
             <div className={styles.gradientBackground} />
