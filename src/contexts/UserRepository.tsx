@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { createContext, ReactNode } from 'react'
 import { gitHubAPI } from '../services/app'
 
@@ -22,7 +21,8 @@ type Repository = {
 
 interface UserRepositoryProps {
     user: User,
-    searchGithubUser: (user: string) => Promise<void>
+    isLoading: boolean,
+    searchGithubUser: (user: string | {}) => Promise<void>
 }
 
 interface UserRepositoryProviderProps {
@@ -34,65 +34,45 @@ export const UserRepository = createContext<UserRepositoryProps>({} as UserRepos
 export function UserRepositoryProvider({ children }: UserRepositoryProviderProps) {
 
     const [user, setUser] = useState<User>({} as User)
+    const [isLoading, setIsLoading] = useState(false)
 
-    async function searchGithubUser(login: string) {
-        await gitHubAPI.get(`/${login}/repos`)
-            .then(res => {
-                const data = res.data
-                const repositories = data.map((repository: Repository) => {
-                    return {
-                        id: repository.id,
-                        name: repository.name,
-                        description: repository.description ? repository.description : null,
-                        language: repository.language ? repository.language : null,
-                        updatedAt: repository.updatedAt,
-                        html_url: repository.html_url,
-                        topics: repository.topics ? repository.topics : null
-                    }
-                })
+    async function searchGithubUser(login: string | {}) {
+        if (login) {
+            try {
+                setIsLoading(true)
+                await gitHubAPI.get(`/${login}/repos`)
+                    .then(res => {
+                        const data = res.data
+                        const repositories = data.map((repository: Repository) => {
+                            return {
+                                id: repository.id,
+                                name: repository.name,
+                                description: repository.description ? repository.description : null,
+                                language: repository.language ? repository.language : null,
+                                updatedAt: repository.updatedAt,
+                                html_url: repository.html_url,
+                                topics: repository.topics ? repository.topics : null
+                            }
+                        })
 
-                const userInfo = data[0].owner
+                        const userInfo = data[0].owner
 
-                setUser({
-                    id: userInfo.id,
-                    avatar: userInfo.avatar_url,
-                    name: userInfo.login,
-                    repositories
-                })
-            })
+                        setUser({
+                            id: userInfo.id,
+                            avatar: userInfo.avatar_url,
+                            name: userInfo.login,
+                            repositories
+                        })
+                    })
+                setIsLoading(false)
+            } catch (error) {
+                alert(error)
+            }
+        }
     }
 
-    useEffect(() => {
-        if (user) {
-            gitHubAPI.get(`/${user}/repos`)
-                .then(res => {
-                    const data = res.data
-                    const repositories = data.map((repository: Repository) => {
-                        return {
-                            id: repository.id,
-                            name: repository.name,
-                            description: repository.description,
-                            language: repository.language ? repository.language : null,
-                            updatedAt: repository.updatedAt,
-                            html_url: repository.html_url,
-                            topics: repository.topics ? repository.topics : null
-                        }
-                    })
-
-                    const userInfo = data[0].owner
-
-                    setUser({
-                        id: userInfo.id,
-                        avatar: userInfo.avatar_url,
-                        name: userInfo.login,
-                        repositories
-                    })
-                })
-        }
-    }, [])
-
     return (
-        <UserRepository.Provider value={{ user, searchGithubUser }}>
+        <UserRepository.Provider value={{ user, isLoading, searchGithubUser }}>
             {children}
         </UserRepository.Provider>
     )

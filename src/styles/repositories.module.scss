@@ -25,7 +25,7 @@
 
 .content {
     z-index: 2;
-
+    height: inherit;
     display: flex;
     flex-direction: column;
 }
