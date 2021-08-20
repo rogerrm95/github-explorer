@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { createContext, ReactNode } from 'react'
+import { format } from 'date-fns'
 import { gitHubAPI } from '../services/app'
+import { ptBR } from 'date-fns/locale'
 
 type User = {
     id: number,
@@ -14,7 +16,7 @@ type Repository = {
     name: string,
     description?: string | null,
     language: string | null,
-    updatedAt: string,
+    updated_at: string,
     html_url: string,
     topics: string[] | null
 }
@@ -42,6 +44,7 @@ export function UserRepositoryProvider({ children }: UserRepositoryProviderProps
                 setIsLoading(true)
                 await gitHubAPI.get(`/${login}/repos`)
                     .then(res => {
+                        console.log(res.data)
                         const data = res.data
                         const repositories = data.map((repository: Repository) => {
                             return {
@@ -49,7 +52,10 @@ export function UserRepositoryProvider({ children }: UserRepositoryProviderProps
                                 name: repository.name,
                                 description: repository.description ? repository.description : null,
                                 language: repository.language ? repository.language : null,
-                                updatedAt: repository.updatedAt,
+                                updated_at: format(new Date(repository.updated_at),
+                                    "dd 'de' MMMM 'de' yyy", {
+                                    locale: ptBR
+                                }),
                                 html_url: repository.html_url,
                                 topics: repository.topics ? repository.topics : null
                             }

@@ -1,7 +1,5 @@
 import { FiLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import Typescript from '../../assets/typescript.svg'
-
 import styles from './styles.module.scss'
 
 type RepositoryCardProps = {
@@ -14,18 +12,25 @@ type RepositoryCardProps = {
 }
 
 export function RepositoryCard({ project, description = null, language = null, updatedAt, url, topics = [] }: RepositoryCardProps) {
+
     return (
         <li className={styles.container}>
 
             <header className={styles.header}>
                 <h2>{project}</h2>
                 <span>
-                    Atualizado em: 10 de Outubro de 2021
+                    {updatedAt}
                 </span>
             </header>
 
             <main className={styles.content}>
-                <p>{description}</p>
+                <div>
+                    <span>Descrição:</span>
+
+                    <p>
+                        {description ? description : 'Sem descrição'}
+                    </p>
+                </div>
 
                 <ul>
                     {
@@ -39,13 +44,16 @@ export function RepositoryCard({ project, description = null, language = null, u
             </main>
 
             <footer className={styles.footer}>
+                <div>
+                    <h3>
+                        URL <FiLink size={18} color='#FFF' />
+                    </h3>
+                    <Link to={{ pathname: `${url}` }} target="_blank">{url}</Link>
+                </div>
+
                 <h3>
-                    URL <FiLink size={18} color='#FFF' />
+                    {language}
                 </h3>
-
-                <Link to={{pathname: `${url}`}} target="_blank">{url}</Link> 
-
-                <img src={Typescript} alt="Linguagem de Programação" />
             </footer>
         </li>
     )

@@ -9,6 +9,7 @@ import { RepositoryCard } from "../components/RepositoryCard";
 import { SearchInput } from "../components/SearchInput";
 
 import styles from '../styles/repositories.module.scss'
+import { FiUser } from "react-icons/fi";
 
 type PathParams = {
     login: string | undefined
@@ -32,7 +33,7 @@ export default function Repositories() {
             <Header />
 
             <main className={styles.content}>
-                <header className={styles.topSearch}>
+                <header className={styles.topSearchBox}>
                     <SearchInput
                         value={username}
                         handleSearchUser={handleSearchUser}
@@ -42,30 +43,35 @@ export default function Repositories() {
 
                 {
                     isLoading ? (
-                        <Loading/>
+                        <Loading />
                     ) : (
                         !user.repositories ? (
                             <NoResults />
                         ) : (
-                            <ul className={styles.repositoriesList}>
-                                {
-                                    user.repositories.map(repository => (
-                                        <RepositoryCard
-                                            key={repository.id}
-                                            project={repository.name}
-                                            description={repository.description}
-                                            language={repository.language}
-                                            updatedAt={repository.updatedAt}
-                                            url={repository.html_url}
-                                            topics={repository.topics} />
-                                    ))
-                                }
-                            </ul>
+                            <div className={styles.repositoriesList}>
+                                <h2>
+                                    <FiUser size={24} color="#008779"/>
+                                    {user.name}
+                                </h2>
+                                <ul>
+                                    {
+                                        user.repositories.map(repository => (
+                                            <RepositoryCard
+                                                key={repository.id}
+                                                project={repository.name}
+                                                description={repository.description}
+                                                language={repository.language}
+                                                updatedAt={repository.updated_at}
+                                                url={repository.html_url}
+                                                topics={repository.topics} />
+                                        ))
+                                    }
+                                </ul>
+                            </div>
                         )
                     )
                 }
             </main>
-
             <div className={styles.gradientBackground} />
         </div>
     )
