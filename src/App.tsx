@@ -11,8 +11,8 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact component={LandingPage} />
-          <Route path='/repositories' component={Repositories} />
-          <Route path='/:login/repositories' component={Repositories} />
+          <Route path='/repositories' exact component={Repositories} />
+          <Route path='/repositories/:login' component={Repositories} />
         </Switch>
       </Router>
     </div>

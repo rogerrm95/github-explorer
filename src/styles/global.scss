@@ -67,3 +67,9 @@ li {
         font-size: 81,25%; // 14px
     }
 }
+
+@media(max-width: 375px) {
+    html {
+        font-size: 75%; // 14px
+    }
+}

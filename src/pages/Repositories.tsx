@@ -8,8 +8,9 @@ import { NoResults } from "../components/NoResults";
 import { RepositoryCard } from "../components/RepositoryCard";
 import { SearchInput } from "../components/SearchInput";
 
-import styles from '../styles/repositories.module.scss'
 import { FiUser } from "react-icons/fi";
+import styles from '../styles/repositories.module.scss'
+import { ReadMore } from "../components/ReadMore";
 
 type PathParams = {
     login: string | undefined
@@ -21,6 +22,7 @@ export default function Repositories() {
     const [username, setUsername] = useState("")
 
     useEffect(() => {
+        console.log(login)
         login && searchGithubUser(login)
     }, [])
 
@@ -50,7 +52,7 @@ export default function Repositories() {
                         ) : (
                             <div className={styles.repositoriesList}>
                                 <h2>
-                                    <FiUser size={24} color="#008779"/>
+                                    <FiUser size={24} color="#008779" />
                                     {user.name}
                                 </h2>
                                 <ul>
@@ -67,6 +69,8 @@ export default function Repositories() {
                                         ))
                                     }
                                 </ul>
+
+                                <ReadMore />
                             </div>
                         )
                     )

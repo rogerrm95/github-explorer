@@ -14,7 +14,7 @@ export default function Home() {
     const {push} = useHistory()
 
     async function handleSearchUser() {
-        push(`/${username}/repositories`)
+        push(`/repositories/${username}`)
     }
 
     return (
