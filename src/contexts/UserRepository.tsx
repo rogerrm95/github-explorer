@@ -23,7 +23,10 @@ type Repository = {
 
 interface UserRepositoryProps {
     user: User,
+    pageLimit: number,
     isLoading: boolean,
+    hasMoreRepositories: boolean,
+    readMore: (repositories: Repository[]) => void
     searchGithubUser: (user: string | {}) => Promise<void>
 }
 
@@ -36,7 +39,10 @@ export const UserRepository = createContext<UserRepositoryProps>({} as UserRepos
 export function UserRepositoryProvider({ children }: UserRepositoryProviderProps) {
 
     const [user, setUser] = useState<User>({} as User)
+    const [pageLimit, setPageLimit] = useState(10)
+    const [allRepositories, setAllRepositories] = useState([] as Repository[])
     const [isLoading, setIsLoading] = useState(false)
+    const [hasMoreRepositories, setHasMoreRepositories] = useState(true)
 
     async function searchGithubUser(login: string | {}) {
         if (login) {
@@ -46,7 +52,7 @@ export function UserRepositoryProvider({ children }: UserRepositoryProviderProps
                     .then(res => {
                         console.log(res.data)
                         const data = res.data
-                        const repositories = data.map((repository: Repository) => {
+                        const all = data.map((repository: Repository) => {
                             return {
                                 id: repository.id,
                                 name: repository.name,
@@ -63,6 +69,12 @@ export function UserRepositoryProvider({ children }: UserRepositoryProviderProps
 
                         const userInfo = data[0].owner
 
+                        const repositories = all.filter((item: any, index: number) => {
+                            return index < pageLimit && item
+                        })
+
+                        setAllRepositories(all)
+
                         setUser({
                             id: userInfo.id,
                             avatar: userInfo.avatar_url,
@@ -70,15 +82,41 @@ export function UserRepositoryProvider({ children }: UserRepositoryProviderProps
                             repositories
                         })
                     })
+
                 setIsLoading(false)
             } catch (error) {
-                alert(error)
+                setIsLoading(false)
+                setUser({} as User)
+                alert("Usuário não encontrado!")
             }
         }
     }
 
+    function readMore(repositories: Repository[]) {
+        if (repositories.length === pageLimit) {
+            let newArray = allRepositories.filter((item, index) => {
+                return (repositories.length < (index + 1) && (index + 1) <= (pageLimit + 10)) && item
+            })
+
+            setPageLimit(pageLimit + 10)
+            setHasMoreRepositories(true)
+            setUser({
+                ...user,
+                repositories: [...repositories, ...newArray]
+            })
+        } else {
+            setHasMoreRepositories(false)
+        }
+    }
+
     return (
-        <UserRepository.Provider value={{ user, isLoading, searchGithubUser }}>
+        <UserRepository.Provider value={{
+            user,
+            isLoading,
+            pageLimit,
+            hasMoreRepositories,
+            readMore,
+            searchGithubUser }}>
             {children}
         </UserRepository.Provider>
     )
