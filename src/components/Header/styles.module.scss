@@ -8,16 +8,54 @@
     position: relative;
     z-index: 2;
 
-    img {
+    img, svg {
         width: 72px;
         position: absolute;
         top: 1rem;
         left: 3rem;
     }
 
+    svg {
+        display: none;
+        transition: filter 0.3s;
+
+        &:hover {
+            filter: brightness(0.7);
+        }
+    }
+    
     h1 {
         & strong {
             color: var(--green-500);
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .container:only-of-type img {
+        display: none;
+    }
+
+    .container:only-of-type svg {
+        display: block;
+    }
+}
+
+@media (max-width: 600px) {
+    .container > h1 {
+        font-size: 4.5rem;
+    }
+
+    .container {
+        svg {
+            left: 0.5rem;
         }
     }
 }

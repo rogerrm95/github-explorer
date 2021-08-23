@@ -22,7 +22,6 @@ export default function Repositories() {
     const [username, setUsername] = useState("")
 
     useEffect(() => {
-        console.log(login)
         login && searchGithubUser(login)
     }, [])
 
@@ -32,7 +31,7 @@ export default function Repositories() {
 
     return (
         <div className={styles.container}>
-            <Header />
+            <Header link={'/'}/>
 
             <main className={styles.content}>
                 <header className={styles.topSearchBox}>

@@ -50,7 +50,6 @@ export function UserRepositoryProvider({ children }: UserRepositoryProviderProps
                 setIsLoading(true)
                 await gitHubAPI.get(`/${login}/repos`)
                     .then(res => {
-                        console.log(res.data)
                         const data = res.data
                         const all = data.map((repository: Repository) => {
                             return {
