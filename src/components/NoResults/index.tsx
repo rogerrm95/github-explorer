@@ -6,8 +6,8 @@ import styles from './styles.module.scss'
 export function NoResults() {
     return (
         <div className={styles.noResults}>
-                <img src={SearchImage} alt="Notebook" id='notebook' />
-                <img src={DangerImage} alt="Atenção" id='danger' />
+                <img src={DangerImage} alt="Atenção"/>
+                <img src={SearchImage} alt="Notebook"/>
             <span>Sem resultados !</span>
         </div>
     )
