@@ -80,14 +80,14 @@
         place-items: center;
         justify-content: center;
         padding: 0;
-        margin: 0 1rem;
+        margin: 0 1rem 2.5rem 1rem;
     }
 
     .content {
         grid-area: texts;
         align-items: center;
 
-        h2 {
+        h2, p {
             text-align: center;
         }
 

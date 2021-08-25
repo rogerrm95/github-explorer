@@ -38,7 +38,7 @@ export default function Home() {
 
                     <SearchInput
                         value={username}
-                        handleSearchUser={handleSearchUser}
+                        onSearch={handleSearchUser}
                         onChange={(event) => setUsername(event.target.value)}
                     />
                 </section>

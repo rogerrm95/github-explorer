@@ -1,6 +1,5 @@
 .noResults {
     align-self: center;
-    padding: 1rem;
     margin: auto 0;
     display: grid;
     grid-template-columns: 128px 128px;
@@ -10,13 +9,13 @@
     "notebook danger"
     "legend legend";
 
-    #notebook  {
+    :first-of-type img {
         grid-area: notebook;
         margin: 0.5rem;
-        width: 4rem;
+        width: 2rem;
     }
 
-    #danger {
+    :last-of-type img {
         grid-area: danger;
     }
 
