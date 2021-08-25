@@ -37,7 +37,7 @@ O app estará disponível no seu browser pelo endereço http://localhost:3000.
 
 MyGit é uma plataforma no qual permite qualquer usuário a realizar uma busca por repositorios de usuários do Github. Trazendo consigo dados como: nome do projeto, descrição, topicos, URL para o repositorio no Github e até mesmo a linguagem principal utilizada em cada projeto. O projeto foi desenvolvido utilizando React JS, Context API do React, SASS e a API do Github.
 
-Link para o projeto online: [Coming Soon]().
+Link para o projeto online: [My-Git](https://my-git-7e868.web.app/).
 
 # 🔖 Layout
 
